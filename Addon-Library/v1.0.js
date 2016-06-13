@@ -48,7 +48,10 @@ var exampleModule = {
 	}
 };
 
-/*
+registerModule(exampleModule);
+
+***************************************************************************************************************
+
 Other parameters you can add to your modules are the following:
 
 getSettingsLayout: function() {
@@ -67,7 +70,8 @@ If you want to store a variable in a module, simply add it like this: yourVariab
 You can call this variable from within the module using this.yourVariableName.
 
 It's still possible to use normal vars within the module's functions (onUseItem, onTick etcetera)
-*/
+
+***************************************************************************************************************
 
 registerModule(exampleModule);
 
