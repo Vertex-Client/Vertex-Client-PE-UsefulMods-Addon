@@ -18,8 +18,72 @@ const Category = {
 /**
  *	CUSTOM MODULES
  */
-//variables
 
+var VertexClientPE = {};
+
+VertexClientPE.nuker = function (x, y, z, range, mode) {
+
+	range = (range == null) ? 3 : range;
+
+	mode = (mode == null) ? "cube" : mode;
+
+	if (mode == "cube") {
+
+		for (var blockX = -range; blockX <= range; blockX++) {
+
+			for (var blockY = -range; blockY <= range; blockY++) {
+
+				for (var blockZ = -range; blockZ <= range; blockZ++) {
+
+					setTile(x + blockX, y + blockY, z + blockZ, 0);
+
+				}
+
+			}
+
+		}
+
+	}
+	if (mode == "flat") {
+
+		for (var blockX = -range; blockX <= range; blockX++) {
+
+			for (var blockY = -1; blockY <= range; blockY++) {
+
+				for (var blockZ = -range; blockZ <= range; blockZ++) {
+
+					setTile(x + blockX, y + blockY, z + blockZ, 0);
+
+				}
+
+			}
+
+		}
+
+	}
+	if (mode == "smash") {
+
+		for (var blockX = -range; blockX <= range; blockX++) {
+
+			for (var blockY = -range; blockY <= range; blockY++) {
+
+				for (var blockZ = -range; blockZ <= range; blockZ++) {
+
+					if (Block.getDestroyTime(getTile(x + blockX, y + blockY, z + blockZ)) == 0) {
+
+						setTile(x + blockX, y + blockY, z + blockZ, 0);
+
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+}
 
 registerModule({
 	name: "AutoLevitate",
@@ -27,84 +91,16 @@ registerModule({
 	category: Category.MOVEMENT,
 	type: "Mod",
 	state: false,
-	isStateMod: function() {
+	isStateMod: function () {
 		return true;
 	},
-	onToggle: function() {
+	onToggle: function () {
 		this.state = !this.state;
 	},
-	onTick: function() {
-		setVelY(Player.getEntity(), + 0.07);
+	onTick: function () {
+		setVelY(Player.getEntity(), +0.07);
 	}
 });
-
-var VertexClientPE = {};
-
- 
-
-VertexClientPE.nuker = function(x, y, z, range,mode) {
-
-    range = (range==null)?3:range;
-
-    mode = (mode==null)?"cube":mode;
-
-    if(mode == "cube") {
-
-        for(var blockX = - range; blockX <= range;blockX++) {
-
-            for(var blockY = - range; blockY <=range; blockY++) {
-
-                for(var blockZ = - range; blockZ <=range; blockZ++) {
-
-                    setTile(x + blockX, y + blockY,z + blockZ, 0);
-
-                }
-
-            }
-
-        }
-
-    }if(mode == "flat") {
-
-        for(var blockX = - range; blockX <= range;blockX++) {
-
-            for(var blockY = - 1; blockY <= range;blockY++) {
-
-                for(var blockZ = - range; blockZ <=range; blockZ++) {
-
-                    setTile(x + blockX, y + blockY,z + blockZ, 0);
-
-                }
-
-            }
-
-        }
-
-    }if(mode == "smash") {
-
-        for(var blockX = - range; blockX <= range;blockX++) {
-
-            for(var blockY = - range; blockY <=range; blockY++) {
-
-                for(var blockZ = - range; blockZ <=range; blockZ++) {
-
-                   if(Block.getDestroyTime(getTile(x + blockX, y +blockY, z + blockZ)) == 0) {
-
-                        setTile(x + blockX, y +blockY, z + blockZ, 0);
-
-                    }
-
-                }
-
-            }
-
-        }
-
-    }
-
-}
-
-
 
 registerModule({
 	name: "PointNuker",
@@ -112,18 +108,19 @@ registerModule({
 	category: Category.BUILDING,
 	type: "Mod",
 	state: false,
-	isStateMod: function() {
+	isStateMod: function () {
 		return true;
 	},
-onToggle: function() {
+	onToggle: function () {
 		this.state = !this.state;
-},
-	onTick: function() {
-if(getTile(Player.getPointedBlockX(), Player.getPointedBlockY(), Player.getPointedBlockZ()) != 0) {
-VertexClientPE.nuker(Player.getPointedBlockX(), Player.getPointedBlockY(),
-Player.getPointedBlockZ(), 3, "cube");
-}
-}});
+	},
+	onTick: function () {
+		if (getTile(Player.getPointedBlockX(), Player.getPointedBlockY(), Player.getPointedBlockZ()) != 0) {
+			VertexClientPE.nuker(Player.getPointedBlockX(), Player.getPointedBlockY(),
+				Player.getPointedBlockZ(), 3, "cube");
+		}
+	}
+});
 
 /**
  *	FUNCTION LIBRARY (DON'T EDIT)
