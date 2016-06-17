@@ -104,7 +104,7 @@ registerModule({
 
 registerModule({
 	name: "PointNuker",
-	desc: "Nukes all blocks your'e looking at",
+	desc: "Removes blocks around the block you're looking at.",
 	category: Category.BUILDING,
 	type: "Mod",
 	state: false,
