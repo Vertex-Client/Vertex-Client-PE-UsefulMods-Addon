@@ -31,7 +31,7 @@ var Launcher = {
 const ADDON_NAME = "UsefulMods";
 const ADDON_DESC = "Adds a few handy modules into Vertex Client PE.";
 const ADDON_VERSION = "1.0";
-const TARGET_VERSION = "1.0";
+const TARGET_VERSION = "1.0.1";
 
 var modules = [];
 
@@ -134,7 +134,7 @@ Launcher.isMcpeMaster();
  */
 
 function addonLoadHook() {
-  if(Launcher.isBlockLauncher() || Launcher.isMcpeMaster()) {
+  if(Launcher.isBlockLauncher() || Launcher.isToolbox()) {
     net.zhuoweizhang.mcpelauncher.ScriptManager.callScriptMethod("registerAddon", [ADDON_NAME, ADDON_DESC, ADDON_VERSION, TARGET_VERSION, modules]);
   }
   if(Launcher.isMcpeMaster()) {
@@ -148,7 +148,7 @@ function registerModule(obj) {
 }
 
 function callVertexFunction(functionName, propArray) {
-  if(Launcher.isBlockLauncher() || Launcher.isMcpeMaster()) {
+  if(Launcher.isBlockLauncher() || Launcher.isToolbox()) {
   	net.zhuoweizhang.mcpelauncher.ScriptManager.callScriptMethod("VertexClientPE." + functionName, propArray);
   }
   if(Launcher.isMcpeMaster()) {
