@@ -113,6 +113,9 @@ registerModule({
 		if(Level.getRainLevel() > 0) {
 			Level.setRainLevel(0);
 		}
+		if(Level.getLightningLevel() > 0) {
+			Level.setLightningLevel(0);
+		}
 	}
 });
 
