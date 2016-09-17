@@ -29,7 +29,7 @@ var Launcher = {
 const ADDON_NAME = "MoreCheats";
 const ADDON_DESC = "Adds some cheats into Vertex Client PE.";
 const ADDON_VERSION = "1.0";
-const TARGET_VERSION = "1.0.1";
+const TARGET_VERSION = "1.3.1";
 
 var modules = [];
 
@@ -55,6 +55,25 @@ registerModule({
 	},
 	onToggle: function () {
 		Entity.setHealth(getPlayerEnt(), Entity.getMaxHealth(getPlayerEnt()));
+	}
+});
+
+registerModule({
+	name: "NoWeather",
+	desc: "Disables weather.",
+	category: Category.MISC,
+	type: "Mod",
+	state: false,
+	isStateMod: function () {
+		return true;
+	},
+	onToggle: function () {
+		this.state = !this.state;
+	},
+	onTick: function() {
+		if(Level.getRainLevel() > 0) {
+			Level.setRainLevel(0);
+		}
 	}
 });
 
