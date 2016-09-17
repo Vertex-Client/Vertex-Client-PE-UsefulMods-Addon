@@ -144,6 +144,7 @@ Other functions and variables you can use in your addon are the following:
 callFunction(functionName, propArray);
 >> Example: callFunction("nuke", [getPlayerX(), getPlayerY(), getPlayerZ(), 3, "cube"]); <<
 ^^ In this example it will call Vertex Client PE's nuke function without having to copy the whole function into your addon. This also works for other functions. ^^
+!! Make sure to put the parameters in an array, otherwise it won't work!
 ----------------------------------
 Launcher.isBlockLauncher();
 >> Example: Launcher.isBlockLauncher(); <<
