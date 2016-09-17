@@ -60,7 +60,7 @@ registerModule({
 		this.state = !this.state;
 	},
 	onTick: function () {
-		setVelY(Player.getEntity(), +0.07);
+		setVelY(Player.getEntity(), 0.07);
 	}
 });
 
@@ -80,6 +80,38 @@ registerModule({
 		if (getTile(Player.getPointedBlockX(), Player.getPointedBlockY(), Player.getPointedBlockZ()) != 0) {
 			callVertexFunction("nuker", [Player.getPointedBlockX(), Player.getPointedBlockY(),
 				Player.getPointedBlockZ(), 3, "cube"]);
+		}
+	}
+});
+
+registerModule({
+	name: "Heal",
+	desc: "Heals you.",
+	category: Category.COMBAT,
+	type: "Mod",
+	isStateMod: function () {
+		return false;
+	},
+	onToggle: function () {
+		Entity.setHealth(getPlayerEnt(), Entity.getMaxHealth(getPlayerEnt()));
+	}
+});
+
+registerModule({
+	name: "NoWeather",
+	desc: "Disables weather.",
+	category: Category.MISC,
+	type: "Mod",
+	state: false,
+	isStateMod: function () {
+		return true;
+	},
+	onToggle: function () {
+		this.state = !this.state;
+	},
+	onTick: function() {
+		if(Level.getRainLevel() > 0) {
+			Level.setRainLevel(0);
 		}
 	}
 });
