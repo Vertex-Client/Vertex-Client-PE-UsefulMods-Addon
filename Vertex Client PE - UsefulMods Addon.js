@@ -123,6 +123,20 @@ registerModule({
 	}
 });
 
+registerModule({
+	name: "Suicide",
+	desc: "Kills you.",
+	category: Category.COMBAT,
+	type: "Mod",
+	isStateMod: function () {
+		return false;
+	},
+	onToggle: function () {
+		Entity.setHealth(getPlayerEnt(), 0);
+	}
+});
+
+
 /*
 ***************************************************************************************************************
 
