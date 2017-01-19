@@ -1,10 +1,10 @@
 /**
 *  Library made by peacestorm
-*  © 2016
+*  © 2016-2017
 */
 
 /**
-  * Vertex UsefulMods addon v1.0
+  * Vertex UsefulMods addon v1.1
   * @author peacestorm and LPMG
   *
   * Don't copy anything without our permission!
@@ -34,7 +34,8 @@ var Launcher = {
 
 const ADDON_NAME = "UsefulMods";
 const ADDON_DESC = "Adds a few handy modules into Vertex Client PE.";
-const ADDON_VERSION = "1.0";
+const ADDON_AUTHOR = "LPMG and peacestorm";
+const ADDON_VERSION = "1.1";
 const TARGET_VERSION = "2.0";
 
 var modules = [];
