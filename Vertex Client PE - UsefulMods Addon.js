@@ -35,7 +35,7 @@ var Launcher = {
 const ADDON_NAME = "UsefulMods";
 const ADDON_DESC = "Adds a few handy modules into Vertex Client PE.";
 const ADDON_VERSION = "1.0";
-const TARGET_VERSION = "1.7";
+const TARGET_VERSION = "2.0";
 
 var modules = [];
 
