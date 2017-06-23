@@ -28,6 +28,13 @@ var Launcher = {
 	}
 };
 
+function Song(songTitle, songArtist, songUrl, songGenre) {
+    this.title = songTitle || "Unknown";
+    this.artist = songArtist || "Unknown";
+    this.genre = songGenre || "Unknown";
+    this.url = songUrl;
+}
+
 /**
 * YOUR ADDON CONTENT
 */
@@ -36,9 +43,11 @@ const ADDON_NAME = "UsefulMods";
 const ADDON_DESC = "Adds a few handy modules into Vertex Client PE.";
 const ADDON_AUTHOR = "LPMG and peacestorm";
 const ADDON_VERSION = "1.1";
-const TARGET_VERSION = "2.0";
+const TARGET_VERSION = "2.4";
 
 var modules = [];
+var songs = [];
+var tiles = [];
 
 const Category = {
 	COMBAT: 0,
@@ -83,8 +92,7 @@ registerModule({
 	},
 	onTick: function () {
 		if (getTile(Player.getPointedBlockX(), Player.getPointedBlockY(), Player.getPointedBlockZ()) != 0) {
-			callFunction("nuke", [Player.getPointedBlockX(), Player.getPointedBlockY(),
-				Player.getPointedBlockZ(), 3, "cube"]);
+			callVertexFunction("nuke", [Player.getPointedBlockX(), Player.getPointedBlockY(), Player.getPointedBlockZ(), 3, "cube"]);
 		}
 	}
 });
@@ -151,8 +159,8 @@ getSettingsLayout: function() {
 onModDialogDismiss: function() {
   //this will be called when an user closes a mod's ... dialog
 },
-canBypassYesCheatPlus: function() {
-  return false; //if the mod should be blocked by YesCheat+
+canBypassBypass: function() {
+  return false; //if the mod should be blocked by Bypass
 }
 
 If you want to store a variable in a module, simply add it like this: yourVariableName: yourVariableValue just like other parameters.
@@ -161,11 +169,18 @@ You can call this variable from within the module using this.yourVariableName.
 It's still possible to use normal vars within the module's functions (onUseItem, onTick etcetera)
 
 ***************************************************************************************************************
+
 Other functions and variables you can use in your addon are the following:
 ##################################
 callFunction(functionName, propArray);
->> Example: callFunction("nuke", [getPlayerX(), getPlayerY(), getPlayerZ(), 3, "cube"]); <<
-^^ In this example it will call Vertex Client PE's nuke function without having to copy the whole function into your addon. This also works for other functions. ^^
+>> Example: callFunction("newLevel", []); <<
+^^ In this example it will call newLevel in all scripts. This also works for other functions. ^^
+!! Make sure to put the parameters in an array, otherwise it won't work!
+----------------------------------
+callVertexFunction(functionName, propArray);
+>> Example: callVertexFunction("nuke", [getPlayerX(), getPlayerY(), getPlayerZ(), 3, "cube"]); <<
+^^ In this example it will call Vertex Client PE's 'VertexClientPE.nuke' function without having to copy the whole function into your addon. This also works for other functions. ^^
+** Supported since Vertex Client PE v2.4
 !! Make sure to put the parameters in an array, otherwise it won't work!
 ----------------------------------
 Launcher.isBlockLauncher();
@@ -180,6 +195,7 @@ Launcher.isMcpeMaster();
 >> Example: Launcher.isMcpeMaster(); <<
 ^^ This will return true if the user uses the MCPE Master launcher. If not, it will return false.
 ##################################
+
 ***************************************************************************************************************
 
 */
@@ -202,6 +218,26 @@ function registerModule(obj) {
 	modules.push(obj);
 }
 
+function registerSong(song) {
+	try {
+		if(!(song instanceof Song)) {
+			throw new TypeError("The registered value is not of the type Song.");
+			return;
+		}
+		song.source = ADDON_NAME;
+		songs.push(song);
+	} catch(e) {
+		if(e instanceof TypeError) {
+			print("TypeError: " + e);
+		}
+	}
+}
+
+function registerTile(obj) {
+	obj.source = ADDON_NAME;
+	tiles.push(obj);
+}
+
 function callFunction(functionName, propArray) {
 	if(Launcher.isBlockLauncher() || Launcher.isToolbox()) {
 		net.zhuoweizhang.mcpelauncher.ScriptManager.callScriptMethod(functionName, propArray);
@@ -209,4 +245,8 @@ function callFunction(functionName, propArray) {
 	if(Launcher.isMcpeMaster()) {
 		com.mcbox.pesdk.mcpelauncher.ScriptManager.callScriptMethod(functionName, propArray);
 	}
+}
+
+function callVertexFunction(functionName, args) {
+	callFunction("callVertexFunctionCallback", [functionName, args]);
 }
