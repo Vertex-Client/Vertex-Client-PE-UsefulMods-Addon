@@ -206,10 +206,10 @@ Launcher.isMcpeMaster();
 
 function addonLoadHook() {
 	if(Launcher.isBlockLauncher() || Launcher.isToolbox()) {
-		net.zhuoweizhang.mcpelauncher.ScriptManager.callScriptMethod("registerAddon", [ADDON_NAME, ADDON_DESC, ADDON_VERSION, TARGET_VERSION, modules]);
+		net.zhuoweizhang.mcpelauncher.ScriptManager.callScriptMethod("registerAddon", [ADDON_NAME, ADDON_DESC, ADDON_VERSION, TARGET_VERSION, modules, songs, tiles, ADDON_AUTHOR]);
 	}
 	if(Launcher.isMcpeMaster()) {
-		com.mcbox.pesdk.mcpelauncher.ScriptManager.callScriptMethod("registerAddon", [ADDON_NAME, ADDON_DESC, ADDON_VERSION, TARGET_VERSION, modules]);
+		com.mcbox.pesdk.mcpelauncher.ScriptManager.callScriptMethod("registerAddon", [ADDON_NAME, ADDON_DESC, ADDON_VERSION, TARGET_VERSION, modules, songs, tiles, ADDON_AUTHOR]);
 	}
 }
 
