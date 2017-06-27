@@ -51,9 +51,9 @@ var tiles = [];
 
 const Category = {
 	COMBAT: 0,
-	BUILDING: 1,
+	WORLD: 1,
 	MOVEMENT: 2,
-	CHAT: 3,
+	PLAYER: 3,
 	MISC: 4
 }
 
@@ -81,7 +81,7 @@ registerModule({
 registerModule({
 	name: "PointNuker",
 	desc: "Removes blocks around the block you're looking at.",
-	category: Category.BUILDING,
+	category: Category.WORLD,
 	type: "Mod",
 	state: false,
 	isStateMod: function () {
@@ -113,7 +113,7 @@ registerModule({
 registerModule({
 	name: "NoWeather",
 	desc: "Disables weather.",
-	category: Category.MISC,
+	category: Category.WORLD,
 	type: "Mod",
 	state: false,
 	isStateMod: function () {
