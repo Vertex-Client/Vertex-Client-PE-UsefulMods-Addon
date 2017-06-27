@@ -214,7 +214,6 @@ function addonLoadHook() {
 }
 
 function registerModule(obj) {
-	obj.source = ADDON_NAME;
 	modules.push(obj);
 }
 
@@ -224,7 +223,6 @@ function registerSong(song) {
 			throw new TypeError("The registered value is not of the type Song.");
 			return;
 		}
-		song.source = ADDON_NAME;
 		songs.push(song);
 	} catch(e) {
 		if(e instanceof TypeError) {
@@ -234,7 +232,6 @@ function registerSong(song) {
 }
 
 function registerTile(obj) {
-	obj.source = ADDON_NAME;
 	tiles.push(obj);
 }
 
