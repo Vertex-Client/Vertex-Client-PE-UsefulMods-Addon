@@ -41,7 +41,7 @@ function Song(songTitle, songArtist, songUrl, songGenre) {
 
 const ADDON_NAME = "UsefulMods";
 const ADDON_DESC = "Adds a few handy modules into Vertex Client PE.";
-const ADDON_AUTHOR = "LPMG and peacestorm";
+const ADDON_AUTHOR = "LPMG & peacestorm";
 const ADDON_VERSION = "1.1";
 const TARGET_VERSION = "3.2";
 
