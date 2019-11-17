@@ -5,7 +5,7 @@
 
 /**
   * Vertex UsefulMods addon v1.1
-  * @author peacestorm and LPMG
+  * @author peacestorm, LPMG
   *
   * Don't copy anything without our permission!
  */
@@ -43,7 +43,7 @@ const ADDON_NAME = "UsefulMods";
 const ADDON_DESC = "Adds a few handy modules into Vertex Client PE.";
 const ADDON_AUTHOR = "LPMG and peacestorm";
 const ADDON_VERSION = "1.1";
-const TARGET_VERSION = "2.4";
+const TARGET_VERSION = "3.2";
 
 var modules = [];
 var songs = [];
